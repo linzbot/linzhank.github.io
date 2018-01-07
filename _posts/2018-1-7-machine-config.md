@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The build of A Deep ~~Gaming~~ Learning Machine
+title: The build of A Deep <del>Gaming</del> Learning Machine
 data: 2018-01-07 09:17:00
 ---
 # List of all Parts
