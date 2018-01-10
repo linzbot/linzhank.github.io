@@ -12,7 +12,8 @@ data: 2018-01-05 15:42:00
   - [x] Move the inverted pendulum using ROS
   - [ ] Generate reinforcement learning friendly environment with ROS+Gazebo combination
     - [x] Read joint states from model
-    - [ ] Enables reset environemnt function \(current major problem\)
+    - [x] Enables reset environemnt function \(current major problem\)
+    - [ ] Test velocity control on cart 
     - [ ] Feedback with reward for each state
   - [ ] Implement deep reinforcement learning to control the inverted pendulum
 * *Build simulation environment with model of the robot in gazebo*
