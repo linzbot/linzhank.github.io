@@ -16,6 +16,8 @@
 ### 刷機後的配置（宜在刷機後立即進行配置）
 爲了安裝chromium瀏覽器、優化電源管理、優化CPU以及GPU性能、開啓USB3.0，禁用usb自動關閉等功能，需要在成功用Jetpack刷機後進行一系列設置，具體請參考[jetsonhacks](http://www.jetsonhacks.com/2015/03/10/after-lt4-21-3-flash-setup-nvidia-jetson-tk1/)上的鏈接，以及[github](https://github.com/jetsonhacks/postFlash)上的說明。
 > 以下操作均在Jetson TK1上完成，打開一個終端`Ctrl+Alt+T`
+
+
 1.安裝git：`sudo apt install git`
 2. `git clone https://github.com/jetsonhacks/postFlash.git`
 3. 進入postFlash腳本所在路徑`cd postFlash`，運行`./configureSystem.sh`
