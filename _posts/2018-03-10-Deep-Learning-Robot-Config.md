@@ -24,34 +24,35 @@
   5. 運行`$ ./maxPerformances.sh`即刻提升TK1工作性能。
 
 ### 安裝自定義內核
-~~1. 爲了方便之後的使用，需要安裝grinch內核，詳情可以參考(這裏)[http://www.jetsonhacks.com/2015/05/26/install-grinch-kernel-for-l4t-21-3-on-nvidia-jetson-tk1/]。
+~~爲了方便之後的使用，需要安裝grinch內核，詳情可以參考(這裏)[http://www.jetsonhacks.com/2015/05/26/install-grinch-kernel-for-l4t-21-3-on-nvidia-jetson-tk1/]。
 > 首先下載安裝grinch內核的腳本，`$ git clone https://github.com/jetsonhacks/installGrinch.git`；
 > 進入腳本所在路徑`$ cd installGrinch`；
 > 運行腳本`$ ./installGrinch.sh`\（如果已經下載了grinch內核則執行另一個腳本`$ ./installGrinchNoDownload.sh`）。
 > 重啓。並在終端中驗證當前內核版本`$ uname -r`，結果應顯示爲`3.10.40-grinch-21.3.4`~~
-2. 爲了將來可以在ROS中安裝turtlebot的開發包，需要定製內核，詳情可以參考[這裏](http://www.jetsonhacks.com/2016/06/29/build-custom-kernel-nvidia-jetson-tk1/)。我們在grinch內核的基礎上定製一個加載了UVC模塊的內核。
-  1. `$ git clone https://github.com/jetsonhacks/installLibrealsense.git`
+爲了將來可以在ROS中安裝turtlebot的開發包，需要定製內核，詳情可以參考[這裏](http://www.jetsonhacks.com/2016/06/29/build-custom-kernel-nvidia-jetson-tk1/)。我們在grinch內核的基礎上定製一個加載了UVC模塊的內核。
+  1. `$ git clone https://github.com/jetsonhacks/installLibrealsense.git`
   2. `$ cd installLibrealsense/UVCKernelPatches/scripts`
-  3. 打開腳本文件`gedit installKernelSources.sh`
-    - 第6行改爲`wget http://www.jarzebski.pl/files/jetsontk1/grinch-21.3.4/jetson-tk1-grinch-21.3.4-source.tar.bz2
+  3. 打開腳本文件`gedit installKernelSources.sh`
+    * 第6行改爲`wget http://www.jarzebski.pl/files/jetsontk1/grinch-21.3.4/jetson-tk1-grinch-21.3.4-source.tar.bz2
 `
-    - 第7行改爲`tar -xvf jetson-tk1-grinch-21.3.4-source.tar.bz2`
-    - 第8行改爲`cd linux-grinch-21.3.4`
+    * 第7行改爲`tar -xvf jetson-tk1-grinch-21.3.4-source.tar.bz2`
+    * 第8行改爲`cd linux-grinch-21.3.4`
   4. 打開腳本文件`gedit applyUVCPatch.sh`
-    - 第4行改爲`cd /usr/src/linux-grinch-21.3.4`
+    * 第4行改爲`cd /usr/src/linux-grinch-21.3.4`
   5. 打開腳本文件`gedit makeKernel.sh`
-    - 第4行改爲`cd /usr/src/linux-grinch-21.3.4`
+    * 第4行改爲`cd /usr/src/linux-grinch-21.3.4`
   6. 打開腳本文件`gedit copyzImage.sh`
-    - 第2行改爲`cd /usr/src/linux-grinch-21.3.4`
+    * 第2行改爲`cd /usr/src/linux-grinch-21.3.4`
   7. `$ cd ..`
   8. 運行腳本`$ sudo ./getKernelSources.sh`，之後會彈出內核配置的窗口，請參考下圖進行配置。首先在左側窗口中選擇*General Setup*，在右上角窗口中取消*Automatically append version information to the version string*的勾選，在右上角窗口中雙擊*Local version - append to kernel release:-grinch-21.3.4*可以更改自定義內核的後綴。保存該設置。
   9. 在左側窗口中依次找到*Device Drivers -> Multimedia Support -> Media USB Adapters*，在右上角窗口中右鍵點擊*USB Video Class(UVC)*前的複選框，使其呈現爲一個點。保存設置
   10. 運行腳本`$ ./applyUVCPatch.sh`
   11. 運行腳本`$ ./buildKernel.sh`編譯自定義的內核。
   12. 運行腳本`$ ./copyzImages.sh`
-  13. 重啓TK1。
+  13. 重啓TK1。驗證新的自定義內核`$ uname -r`名字是否與步驟8中設置的一致。
 
 ## 安裝ROS
+可完全參照[ROS官方教程](http://wiki.ros.org/indigo/Installation/UbuntuARM)安裝ros-indigo-ros-base
 
 ## 底座及傳感器配置
 
@@ -60,3 +61,4 @@
 ### 在ROS中配置RpLidar
 
 ### 在ROS中配置底座
+1. 參照[turtlebot](http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation)的教程從repo安裝turtlebot的開發包
