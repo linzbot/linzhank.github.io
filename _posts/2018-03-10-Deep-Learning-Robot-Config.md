@@ -1,3 +1,9 @@
+---
+layout: post
+title: Scientific Web Surfing!
+data: 2018-03-12 07:41:00
+---
+
 # 深度學習機器人配置
 
 ## TK1刷機
@@ -53,6 +59,12 @@
 
 ## 安裝ROS
 可完全參照[ROS官方教程](http://wiki.ros.org/indigo/Installation/UbuntuARM)安裝ros-indigo-ros-base
+### 安裝Catkin Command Line Tools
+ROS默認的catkin工具還不夠方便，可以考慮用[這款工具](https://catkin-tools.readthedocs.io/en/latest/)來替代。
+> `$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'`
+> `$ wget http://packages.ros.org/ros.key -O - | sudo apt-key add -`
+> `$ sudo apt-get update`
+> `$ sudo apt-get install python-catkin-tools`
 
 ## 底座及傳感器配置
 
