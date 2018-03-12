@@ -30,11 +30,13 @@ data: 2018-03-12 07:41:00
   5. 運行`$ ./maxPerformances.sh`即刻提升TK1工作性能。
 
 ### 安裝自定義內核
-~~爲了方便之後的使用，需要安裝grinch內核，詳情可以參考(這裏)[http://www.jetsonhacks.com/2015/05/26/install-grinch-kernel-for-l4t-21-3-on-nvidia-jetson-tk1/]。
+<s>爲了方便之後的使用，需要安裝grinch內核，詳情可以參考(這裏)[http://www.jetsonhacks.com/2015/05/26/install-grinch-kernel-for-l4t-21-3-on-nvidia-jetson-tk1/]。
 > 首先下載安裝grinch內核的腳本，`$ git clone https://github.com/jetsonhacks/installGrinch.git`；
 > 進入腳本所在路徑`$ cd installGrinch`；
 > 運行腳本`$ ./installGrinch.sh`\（如果已經下載了grinch內核則執行另一個腳本`$ ./installGrinchNoDownload.sh`）。
-> 重啓。並在終端中驗證當前內核版本`$ uname -r`，結果應顯示爲`3.10.40-grinch-21.3.4`~~
+> 重啓。並在終端中驗證當前內核版本`$ uname -r`，結果應顯示爲`3.10.40-grinch-21.3.4`
+</s>
+
 爲了將來可以在ROS中安裝turtlebot的開發包，需要定製內核，詳情可以參考[這裏](http://www.jetsonhacks.com/2016/06/29/build-custom-kernel-nvidia-jetson-tk1/)。我們在grinch內核的基礎上定製一個加載了UVC模塊的內核。
   1. `$ git clone https://github.com/jetsonhacks/installLibrealsense.git`
   2. `$ cd installLibrealsense/UVCKernelPatches/scripts`
@@ -58,19 +60,28 @@ data: 2018-03-12 07:41:00
   13. 重啓TK1。驗證新的自定義內核`$ uname -r`名字是否與步驟8中設置的一致。
 
 ## 安裝ROS
-可完全參照[ROS官方教程](http://wiki.ros.org/indigo/Installation/UbuntuARM)安裝ros-indigo-ros-base
+可完全參照[ROS官方教程](http://wiki.ros.org/indigo/Installation/UbuntuARM)安裝ros-indigo-ros-base。
+
 ### 安裝Catkin Command Line Tools
 ROS默認的catkin工具還不夠方便，可以考慮用[這款工具](https://catkin-tools.readthedocs.io/en/latest/)來替代。
-> `$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'`
+> ``$ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `sb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'``
 > `$ wget http://packages.ros.org/ros.key -O - | sudo apt-key add -`
 > `$ sudo apt-get update`
 > `$ sudo apt-get install python-catkin-tools`
+完成後創建ROS工作空間：``$ cd ~``，``$ mkdir -p ros_ws/src``，``$ cd ros_ws/src``，``$ catkin init``， ``$ catkin build``。
+爲了方便修改bashrc，``$ echo “source ~/ros_ws/devel/setup.bash” >> ~/.bashrc``
 
 ## 底座及傳感器配置
 
 ### 安裝Kinect2驅動
 
 ### 在ROS中配置RpLidar
+1. 安裝rplidar所需的依賴庫``$ sudo apt-get install ros-indigo-filters ros-indigo-laser-fileters``
+2. 下載rplidar的源碼``$ git clone https://github.com/robopeak/rplidar_ros.git``
+3. ``$ cd ..``，``$ catkin build``，``$ source ~/ros_ws/devel/setup.bash``
+4. 添加rules文件``$ sudo gedit /etc/udev/rules.d/57-rplidar.rules``，在打開的文件中寫入``KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", MODE:="0777", SYMLINK+="rplidar"``並保存。
+5. 拔下並重新插入分線器，用``$ ll /dev/ | grep ttyUSB*``命令查看USB端口情況確認有*rplidar -> ttyUSB0*或*rplidar -> ttyUSB1*的字樣。
+6. 
 
 ### 在ROS中配置底座
 1. 參照[turtlebot](http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation)的教程從repo安裝turtlebot的開發包
