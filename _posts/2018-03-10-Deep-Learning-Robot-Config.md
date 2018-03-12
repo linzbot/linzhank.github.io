@@ -84,29 +84,29 @@ ROS默認的catkin工具還不夠方便，可以考慮用[這款工具](https://
 ## 在ROS中配置底座
 1. 參照[turtlebot](http://wiki.ros.org/turtlebot/Tutorials/indigo/Turtlebot%20Installation)的教程從repo安裝turtlebot的開發包
 2. 備份默認的turtlebot包
-  > ``$ cd ~ && mkdir turtlebot_backup``
-  > ``$ cd /opt/ros/indigo/share/``
-  > ``$ cp -r turtlebot_description turtlebot_bringup turtlebot_navigation ~/turtlebot_backup/``
+  > ``$ cd ~ && mkdir turtlebot_backup`` 
+  > ``$ cd /opt/ros/indigo/share/`` 
+  > ``$ cp -r turtlebot_description turtlebot_bringup turtlebot_navigation ~/turtlebot_backup/`` 
 3. ``$ cd ~``或cd到任意保存下載機器人配置的路徑
 4. 下載需要更新的配置文件
-  > ``git clone https://github.com/Soy-Robotics/turtlebot.git``
-  > ``git clone https://github.com/Soy-Robotics/turtlebot_apps.git``
-  > ``git clone https://github.com/Soy-Robotics/Ros2Bot.git``
+  > ``git clone https://github.com/Soy-Robotics/turtlebot.git`` 
+  > ``git clone https://github.com/Soy-Robotics/turtlebot_apps.git`` 
+  > ``git clone https://github.com/Soy-Robotics/Ros2Bot.git`` 
 5. 更新深度學習機器人模型
-  > ``$ cd ~/turtlebot``
-  > ``$ sudo cp -R turtlebot_description /opt/ros/indigo/share/``
-  > ``$ echo “export TURTLEBOT_3D_SENSOR=kinect2” >> ~/.bashrc``
+  > ``$ cd ~/turtlebot`` 
+  > ``$ sudo cp -R turtlebot_description /opt/ros/indigo/share/`` 
+  > ``$ echo “export TURTLEBOT_3D_SENSOR=kinect2” >> ~/.bashrc`` 
   > 驗證機器人模型已更新：``roslaunch turtlebot_rviz_launchers view_model.launch``
 6. 替換導航文件
   > ``$ sudo cp -R ~/turtlebot_apps/turtlebot_navigation/launch/* /opt/ros/indigo/share/turtlebot_navigation/launch``
 7. Rplidar配置
-  > ``$ sudo cp ~/Ros2Bot/Rplidar-launch/turtlebot_bringup/laser.yaml /opt/ros/indigo/share/turtlebot_bringup/param``
-  > ``$ sudo cp -R ~/Ros2Bot/Rplidar-launch/turtlebot_navigation_launch/* /opt/ros/indigo/share/turtlebot_navigation/launch/``
+  > ``$ sudo cp ~/Ros2Bot/Rplidar-launch/turtlebot_bringup/laser.yaml /opt/ros/indigo/share/turtlebot_bringup/param`` 
+  > ``$ sudo cp -R ~/Ros2Bot/Rplidar-launch/turtlebot_navigation_launch/* /opt/ros/indigo/share/turtlebot_navigation/launch/`` 
   > ``$ roscd turtlebot_navigation/param``，``sudo gedit costmap_common_params.yaml``，修改*min_obstacle_height*的值爲0.20。
-  > ``$ echo "export TURTLEBOT_BASE=kobuki" >> ~/.bashrc``
+  > ``$ echo "export TURTLEBOT_BASE=kobuki" >> ~/.bashrc`` 
   > ``$ echo "export TURTLEBOT_STACKS=hexagons" >> ~/.bashrc``
 8. 驗證底座配置
-  > ``$ roslaunch turtlebot_bringup minimal.launch``
+  > ``$ roslaunch turtlebot_bringup minimal.launch`` 
   > 新建一個終端，``$ roslaunch turtlebot_teleop keyboard_teleop.launch``。
   根據提示用鍵盤控制機器人。
   
