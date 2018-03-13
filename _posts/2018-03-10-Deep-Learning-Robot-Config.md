@@ -51,7 +51,9 @@ data: 2018-03-12 07:41:00
 > 第2行改爲``cd /usr/src/linux-grinch-21.3.4``
 7. ``$ cd ..``
 8. 運行腳本``$ sudo ./getKernelSources.sh``，之後會彈出內核配置的窗口，請參考下圖進行配置。首先在左側窗口中選擇*General Setup*，在右上角窗口中取消*Automatically append version information to the version string*的勾選，在右上角窗口中雙擊*Local version - append to kernel release:-grinch-21.3.4*可以更改自定義內核的後綴。保存該設置。
+![xconfig_name_kernel](/images/deep_learning_robot/xconfig.png "Xconfig: name your kernel")
 9. 在左側窗口中依次找到*Device Drivers -> Multimedia Support -> Media USB Adapters*，在右上角窗口中右鍵點擊*USB Video Class(UVC)*前的複選框，使其呈現爲一個點。保存設置
+![xconfig_name_kernel](/images/deep_learning_robot/xconfig_1.png "Xconfig: set UVC module")
 10. 運行腳本``$ ./applyUVCPatch.sh``
 11. 運行腳本``$ ./buildKernel.sh``編譯自定義的內核。
 12. 運行腳本``$ ./copyzImages.sh``
