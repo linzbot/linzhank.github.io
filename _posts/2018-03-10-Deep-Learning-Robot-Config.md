@@ -73,6 +73,31 @@ ROS默認的catkin工具還不夠方便，可以考慮用[這款工具](https://
 
 ## 安裝Kinect2驅動
 可完全參照[libfreenect2的教程](https://github.com/OpenKinect/libfreenect2)執行
+- Download source
+> ``$ git clone https://github.com/OpenKinect/libfreenect2.git``
+> ``$ cd libfreenect2``
+- Download upgrade deb files
+> ``$ cd depends; ./download_debs_trusty.sh``
+- Install build tools
+> ``$ sudo apt-get install build-essential cmake pkg-config``
+- Install libusb
+> ``$ sudo dpkg -i debs/libusb*deb``
+- Install TurboJPEG
+> ``$ sudo apt-get install libturbojpeg libjpeg-turbo8-dev``
+- Install OpenGL
+> ``$ sudo dpkg -i debs/libglfw3*deb; sudo apt-get install -f``
+- Install OpenNI2
+> ``$ sudo apt-get install libopenni2-dev``
+- Build
+> ``$ cd ..``
+> ``$ mkdir build && cd build``
+> ``$ cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/freenect2``
+> ``$ make``
+> ``$ make install``
+- Set up udev rules
+> ``$ sudo cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/``
+- Validate
+> ``$ ./bin/Protonect``
 ## 在ROS中配置RpLidar
 1. 安裝rplidar所需的依賴庫``$ sudo apt-get install ros-indigo-filters ros-indigo-laser-fileters``
 2. 下載rplidar的源碼``$ git clone https://github.com/robopeak/rplidar_ros.git``
@@ -111,6 +136,7 @@ ROS默認的catkin工具還不夠方便，可以考慮用[這款工具](https://
   根據提示用鍵盤控制機器人。
   
 # 未完成的革命
-- [ ] 在ROS中配置Kinect1與Kinect2
-- [ ] TK1自帶熱點的網絡配置
-- [ ] 用機器人建立地圖、跟蹤目標、自動回充等功能的實現
+[ ] 在ROS中配置Kinect1與Kinect2
+[ ] TK1自帶熱點的網絡配置
+[ ] 用機器人建立地圖、跟蹤目標、自動回充等功能的實現
+...
