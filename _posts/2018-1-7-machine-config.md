@@ -16,7 +16,6 @@ Talk is cheap, show me the list.
 | Video Card | MSI | GeForce GTX 1080 Ti 11GB Gaming X TRIO | Massdrop | $729.99 | $0.00 |
 | Case | NZXT | Source 530 CA-SO530-M1 ATX Full Tower | Newegg | $69.99\(After -$20 rebate\) | $6.30\(7%\) |
 | Power Supply | EVGA | SuperNova G2, 80+ Gold 1000W | EVGA | $109.99 | $0.00 |
-| Monitor | Dell | U2414H 23.8" 1920x1080 | Amazon | $149.99 | $10.50\(7%\) |
-| Total |   |   |   |   | $2734.45 |
+| Total |   |   |   |   | $2573.96 |
 
 > \(To be continued...\)
